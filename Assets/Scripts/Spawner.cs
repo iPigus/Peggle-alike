@@ -6,7 +6,6 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] float DegreeConstraintAngle = 120f;
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 worldposMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
