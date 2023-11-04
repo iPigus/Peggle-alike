@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    public static List<Box> AllPegs = new();
+
     SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        AllPegs.Add(this);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,5 +32,10 @@ public class Box : MonoBehaviour
         GameManager.SpawnPointText(100, transform.position);
 
         this.gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (AllPegs.Contains(this)) AllPegs.Remove(this);
     }
 }

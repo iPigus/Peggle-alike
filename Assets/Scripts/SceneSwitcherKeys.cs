@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitcherKeys : MonoBehaviour
 {
+    public static SceneSwitcherKeys Singleton;
+    private void Awake()
+    {
+        Singleton = this;
+    }
+
     int sceneOffset = 1; //we have 1 extra scene (title), for the title, tweak this number as needed
     public void LoadScene(int num)
     {

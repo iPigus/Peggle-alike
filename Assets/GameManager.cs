@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class GameManager : MonoBehaviour
     int levelPoints = 0;
     int totalPoints = 0;
 
+    static bool areAllBoxesDestroyed => !Box.AllPegs.Where(x => x).Where(x => x.enabled).Any();
     int ballCount = 5;
     bool isFirstRound = true;
     [SerializeField] GameObject _PointsText; 
@@ -19,6 +23,16 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Singleton = this;        
+    }
+
+    async void LoadNewRound()
+    {
+        await Task.Delay(500);
+
+        ballCount = 5;
+        levelPoints = 0;
+        UpdatePoints();
+        BallCount.SetBallCount(ballCount);
     }
 
     public static void Shot()
@@ -40,6 +54,18 @@ public class GameManager : MonoBehaviour
         Singleton._canShoot = true;
 
         AddPoints(points);
+
+        if (areAllBoxesDestroyed)
+        {
+            SceneSwitcherKeys.Singleton.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            return;
+        }
+
+        if (Singleton.ballCount == 0 && Singleton.isFirstRound)
+        {
+            Singleton.LoadNewRound();
+        }
     }
     public static void AddPoints(int points)
     {
