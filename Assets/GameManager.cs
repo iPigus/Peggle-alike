@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     bool _canShoot = true;
 
     [SerializeField] string levelName;
-    static List<string> WinMessages => new() { "You did it! Victory!", "Impressive win!", "Perfect! You won!" };
-    static List<string> LossMessages => new() { "Tough luck this time", "Almost there! Try again", "Keep going, you'll conquer it!" };
+    static List<string> WinMessages => new() { "You did it!\nVictory!", "Impressive win!", "Perfect!\nYou won!" };
+    static List<string> LossMessages => new() { "Tough luck\nthis time", "Almost there!\nTry again", "Keep going,\nyou'll conquer it!" };
 
     int levelPoints = 0;
     int totalPoints = 0;
@@ -26,7 +26,17 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
-        Singleton = this;        
+        Singleton = this;
+    }
+
+    private async void Start()
+    {
+        DisplayGameText("Level " + SceneManager.GetActiveScene().buildIndex + "\n" + levelName);
+        LockGame();
+
+        await Task.Delay(2000);
+
+        UnlockGame();
     }
 
     public static void Shot()
@@ -91,5 +101,12 @@ public class GameManager : MonoBehaviour
         if (!Spawner.Singleton) return;
 
         Spawner.Singleton.enabled = false;
+    }
+
+    static void UnlockGame()
+    {
+        if(!Spawner.Singleton) return;
+
+        Spawner.Singleton.enabled = true;
     }
 }

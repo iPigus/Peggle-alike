@@ -11,7 +11,7 @@ public class MessageText : MonoBehaviour
     TextMeshProUGUI Text;
     RectTransform Rect;
 
-    static Vector2 startPos = new(0f, -1000f);
+    static Vector2 startPos = new(0f, -1200f);
     static Vector2 endPos = new(0f, 200f);
 
     private void Awake()
@@ -38,6 +38,7 @@ public class MessageText : MonoBehaviour
         while (elapsedTime < moveInTime)
         {
             Singleton.Rect.anchoredPosition = Vector2.Lerp(startPos, endPos, elapsedTime / moveInTime);
+            Singleton.Rect.localScale = Vector2.Lerp(new(0f, 0f), new(1f, 1f), elapsedTime / moveInTime);
 
             await Task.Yield();
 

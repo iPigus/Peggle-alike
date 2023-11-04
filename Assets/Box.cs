@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    [SerializeField] bool isStrong = false;
     public static List<Box> AllPegs = new();
 
     SpriteRenderer spriteRenderer;
@@ -13,18 +14,28 @@ public class Box : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         AllPegs.Add(this);
+
+        if (isStrong && spriteRenderer) spriteRenderer.color = new Color32(244, 255, 0, 255); 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Ball")) return;
 
+        if (isStrong)
+        {
+            if (transform.childCount != 0) transform.GetChild(0).gameObject.SetActive(true);
+            isStrong = false;
+
+            return;
+        }
+
         DestroyPeg();
     }
 
     async void DestroyPeg()
     {
-        spriteRenderer.color = new Color32(255, 255, 255, 100);
+        spriteRenderer.color = new(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 100f/255f);
 
         await Task.Delay(3000);
 
