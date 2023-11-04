@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner Singleton;
+
     [SerializeField] GameObject ball;
     [SerializeField] float DegreeConstraintAngle = 120f;
     Transform SpawnPoint;
 
     private void Awake()
     {
+        Singleton = this;
         SpawnPoint = transform.GetChild(2);
     }
 

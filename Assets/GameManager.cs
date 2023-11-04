@@ -12,27 +12,21 @@ public class GameManager : MonoBehaviour
     public static bool canShoot => Singleton._canShoot && Singleton.ballCount > 0;
     bool _canShoot = true;
 
+    [SerializeField] string levelName;
+    static List<string> WinMessages => new() { "You did it! Victory!", "Impressive win!", "Perfect! You won!" };
+    static List<string> LossMessages => new() { "Tough luck this time", "Almost there! Try again", "Keep going, you'll conquer it!" };
+
     int levelPoints = 0;
     int totalPoints = 0;
 
-    static bool areAllBoxesDestroyed => !Box.AllPegs.Where(x => x).Where(x => x.enabled).Any();
+    static bool areAllBoxesDestroyed => !Box.AllPegs.Where(x => x).Where(x => x.gameObject.activeSelf).Any();
+
     int ballCount = 5;
-    bool isFirstRound = true;
     [SerializeField] GameObject _PointsText; 
     
     private void Awake()
     {
         Singleton = this;        
-    }
-
-    async void LoadNewRound()
-    {
-        await Task.Delay(500);
-
-        ballCount = 5;
-        levelPoints = 0;
-        UpdatePoints();
-        BallCount.SetBallCount(ballCount);
     }
 
     public static void Shot()
@@ -49,7 +43,7 @@ public class GameManager : MonoBehaviour
         text.GetComponentInChildren<TextMeshProUGUI>().text = "+" + points.ToString();
     }
 
-    public static void ClearedBall(int points)
+    public static async void ClearedBall(int points)
     {
         Singleton._canShoot = true;
 
@@ -57,14 +51,22 @@ public class GameManager : MonoBehaviour
 
         if (areAllBoxesDestroyed)
         {
-            SceneSwitcherKeys.Singleton.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            LockGame();
+            DisplayGameText(WinMessages[Random.Range(0, WinMessages.Count)]);
 
-            return;
+            await Task.Delay(2000); if (!Singleton) return;
+
+            SceneSwitcherKeys.Singleton.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); return;
         }
 
-        if (Singleton.ballCount == 0 && Singleton.isFirstRound)
+        if (Singleton.ballCount == 0)
         {
-            Singleton.LoadNewRound();
+            LockGame();
+            DisplayGameText(LossMessages[Random.Range(0, LossMessages.Count)]);
+
+            await Task.Delay(2000); if (!Singleton) return;
+
+            SceneSwitcherKeys.Singleton.LoadScene(SceneManager.GetActiveScene().buildIndex); return;
         }
     }
     public static void AddPoints(int points)
@@ -77,5 +79,17 @@ public class GameManager : MonoBehaviour
     void UpdatePoints()
     {
         Points.UpdatePoints(levelPoints, totalPoints);
+    }
+
+    static void DisplayGameText(string text)
+    {
+        MessageText.Display(text);    
+    }
+
+    static void LockGame()
+    {
+        if (!Spawner.Singleton) return;
+
+        Spawner.Singleton.enabled = false;
     }
 }
