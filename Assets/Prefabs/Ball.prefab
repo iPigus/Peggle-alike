@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2713410792458321520}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 82f33e81f5d7bba468091fffcaf92246, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
