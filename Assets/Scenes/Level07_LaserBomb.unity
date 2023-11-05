@@ -370,6 +370,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4594851447503815130, guid: 8ebd76fee93148040ad8fbd0f606b2dc, type: 3}
+      propertyPath: levelName
+      value: Laser Bomb
+      objectReference: {fileID: 0}
     - target: {fileID: 5243717917416540874, guid: 8ebd76fee93148040ad8fbd0f606b2dc, type: 3}
       propertyPath: m_Name
       value: Main Camera

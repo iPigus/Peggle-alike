@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     private async void Start()
     {
         DisplayGameText("Level " + SceneManager.GetActiveScene().buildIndex + "\n" + levelName);
+        UpdatePoints();
 
         if (SceneManager.GetActiveScene().buildIndex != 8)
         {
@@ -208,7 +209,7 @@ public class GameManager : MonoBehaviour
     }
     public static void AddPoints(int points)
     {
-        Singleton.totalPoints += points;
+        totalPoints += points;
         Singleton.levelPoints += points;
         Singleton.UpdatePoints();
     }
