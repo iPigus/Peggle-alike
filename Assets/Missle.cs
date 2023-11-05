@@ -65,6 +65,7 @@ public class Missle : MonoBehaviour
             ballRb.AddForce(forceDirection * speed, ForceMode2D.Impulse);
 
             // Destroy the missile
+            MusicManager.StartExploseSound();
             Destroy(gameObject);
         }
     }

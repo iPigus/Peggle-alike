@@ -23,6 +23,7 @@ public class Box : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Ball")) return;
 
+        MusicManager.PlayBoxSound();
         Hit(); 
     }
 

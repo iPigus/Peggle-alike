@@ -29,6 +29,7 @@ public class Checkpoint : MonoBehaviour
 
         if (bonusGranted) return;
 
+        MusicManager.PlayCheckpointSound();
         isTapped = !isTapped;
 
         spriteRenderer.color = new(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, isTapped ? 1f : .5f);
