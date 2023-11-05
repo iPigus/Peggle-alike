@@ -17,12 +17,18 @@ public class GameManager : MonoBehaviour
     static List<string> LossMessages => new() { "Tough luck\nthis time", "Almost there!\nTry again", "Keep going,\nyou'll conquer it!" };
 
     int levelPoints = 0;
-    int totalPoints = 0;
+    public static int totalPoints
+    {
+        get => PlayerPrefs.GetInt("totalPoints");
+        set => PlayerPrefs.SetInt("totalPoints", value);
+    }
 
     static bool areAllBoxesDestroyed => !Box.AllPegs.Where(x => x).Where(x => x.gameObject.activeSelf).Any();
 
     int ballCount = 5;
-    [SerializeField] GameObject _PointsText; 
+    [SerializeField] GameObject _PointsText;
+
+    bool isCameraFollow = false;
     
     private void Awake()
     {
@@ -32,11 +38,122 @@ public class GameManager : MonoBehaviour
     private async void Start()
     {
         DisplayGameText("Level " + SceneManager.GetActiveScene().buildIndex + "\n" + levelName);
+
+        if (SceneManager.GetActiveScene().buildIndex != 8)
+        {
+            LockGame();
+
+            await Task.Delay(2000);
+
+            UnlockGame();
+        }
+        else
+        {
+            LockGame();
+            Camera camera = Camera.main;
+
+            await Task.Delay(2000);
+
+            const float transitionTime = 1f;
+            float elapsedTime = 0;
+
+            while (elapsedTime < transitionTime)
+            {
+                camera.orthographicSize = Mathf.Lerp(15, 5, elapsedTime / transitionTime);
+
+                await Task.Yield();
+
+                elapsedTime += Time.deltaTime;
+            }
+
+            isCameraFollow = true;
+
+            camera.orthographicSize = 5;
+            UnlockGame();
+        }
+    }
+
+    GameObject ball;
+    private void LateUpdate()
+    {
+        if (!isCameraFollow) return;
+        if (ball == null) ball = GameObject.FindGameObjectWithTag("Ball"); 
+
+        if (ball != null)
+        {
+            Vector3 desiredPosition = ball.transform.position;
+
+            Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPosition, 5f * Time.deltaTime);
+            transform.position = new(smoothPosition.x, smoothPosition.y, -10);
+        }
+    }
+
+    async void MoveCameraBack()
+    {
+        isCameraFollow = false;
         LockGame();
 
-        await Task.Delay(2000);
+        await Task.Delay(300);
 
+        Vector3 startPos = transform.position;
+        Vector3 endPos = new(0,0,-10);
+
+        const float ZoomOutTime = .5f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < ZoomOutTime)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / ZoomOutTime);
+            Camera.main.orthographicSize = Mathf.Lerp(5, 15, elapsedTime / ZoomOutTime); 
+
+            await Task.Yield();
+
+            elapsedTime += Time.deltaTime;
+        }
+
+        transform.position = endPos;
+        elapsedTime = 0f;
+
+        await Task.Delay(1000);
+
+        while (elapsedTime < ZoomOutTime)
+        {
+            Camera.main.orthographicSize = Mathf.Lerp(15, 5, elapsedTime / ZoomOutTime);
+
+            await Task.Yield();
+
+            elapsedTime += Time.deltaTime;
+        }
+
+        Camera.main.orthographicSize = 5;
+        isCameraFollow = true;
         UnlockGame();
+    }
+
+    async void CameraZoomOut()
+    {
+        isCameraFollow = false;
+        LockGame();
+
+        await Task.Delay(300);
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = new(0, 0, -10);
+
+        const float ZoomOutTime = .5f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < ZoomOutTime)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / ZoomOutTime);
+            Camera.main.orthographicSize = Mathf.Lerp(5, 15, elapsedTime / ZoomOutTime);
+
+            await Task.Yield();
+
+            elapsedTime += Time.deltaTime;
+        }
+
+        transform.position = endPos;
     }
 
     public static void Shot()
@@ -59,13 +176,21 @@ public class GameManager : MonoBehaviour
 
         AddPoints(points);
 
+        if(Singleton.isCameraFollow) Singleton.MoveCameraBack();
+
         if (areAllBoxesDestroyed)
         {
             LockGame();
             DisplayGameText(WinMessages[Random.Range(0, WinMessages.Count)]);
 
+            if (SceneManager.GetActiveScene().buildIndex == 8) Singleton.CameraZoomOut();
+
             await Task.Delay(2000); if (!Singleton) return;
 
+            if (SceneManager.GetActiveScene().buildIndex == 8)
+            {
+                SceneSwitcherKeys.Singleton.LoadScene(0); return;
+            }
             SceneSwitcherKeys.Singleton.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); return;
         }
 
@@ -73,6 +198,8 @@ public class GameManager : MonoBehaviour
         {
             LockGame();
             DisplayGameText(LossMessages[Random.Range(0, LossMessages.Count)]);
+
+            if (SceneManager.GetActiveScene().buildIndex == 8) Singleton.CameraZoomOut();
 
             await Task.Delay(2000); if (!Singleton) return;
 
