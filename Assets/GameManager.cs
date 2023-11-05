@@ -91,7 +91,8 @@ public class GameManager : MonoBehaviour
         Points.UpdatePoints(levelPoints, totalPoints);
     }
 
-    static void DisplayGameText(string text)
+
+    public static void DisplayGameText(string text)
     {
         MessageText.Display(text);    
     }

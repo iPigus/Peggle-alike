@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Peg
   - Ball
+  - Box
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Platforms
   - Postprocessing
   - Enemy
-  - 
+  - Box
   - 
   - 
   - 

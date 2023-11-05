@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
 
         if (spawnedBall.TryGetComponent(out Rigidbody2D rigidbody))
         {
-            rigidbody.AddForce(3f * new Vector2(Mathf.Cos((rotationZ - 90f) * Mathf.Deg2Rad), Mathf.Sin((rotationZ - 90f) * Mathf.Deg2Rad)), ForceMode2D.Impulse);
+            rigidbody.AddForce(5f * new Vector2(Mathf.Cos((rotationZ - 90f) * Mathf.Deg2Rad), Mathf.Sin((rotationZ - 90f) * Mathf.Deg2Rad)), ForceMode2D.Impulse);
         }
         else Debug.LogError("Couldn't get spawnedball rigidbody2D!");
 

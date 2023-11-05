@@ -33,7 +33,7 @@ Transform:
   - {fileID: 4703165461215439262}
   - {fileID: 785906831521713421}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9036270908315336670
 GameObject:
@@ -164,6 +164,14 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
@@ -269,6 +277,14 @@ PrefabInstance:
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_Size.y
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92941177
       objectReference: {fileID: 0}
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SortingOrder
@@ -378,6 +394,14 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
@@ -460,6 +484,14 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.48584908
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92738885
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -4535677865047910878, guid: d76df32d36620014c9e1a511db26accb, type: 3}
     m_RemovedGameObjects: []
@@ -485,7 +517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1624571997578755175, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_Size.y
-      value: 24
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 1624571997578755175, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -493,7 +525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1624571997578755175, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 24
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 2003728971444176954, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_RootOrder
@@ -505,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2003728971444176954, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.44
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2003728971444176954, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -549,7 +581,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_Size.y
-      value: 24
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.48584908
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92738885
       objectReference: {fileID: 0}
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SortingOrder
@@ -659,6 +699,14 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
@@ -687,7 +735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1624571997578755175, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_Size.y
-      value: 24
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 1624571997578755175, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -695,7 +743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1624571997578755175, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 24
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 2003728971444176954, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_RootOrder
@@ -707,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2003728971444176954, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.44
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2003728971444176954, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -751,7 +799,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_Size.y
-      value: 24
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.48584908
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92738885
       objectReference: {fileID: 0}
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SortingOrder
@@ -859,6 +915,14 @@ PrefabInstance:
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_Size.y
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92941177
       objectReference: {fileID: 0}
     - target: {fileID: 9046277425527050806, guid: d76df32d36620014c9e1a511db26accb, type: 3}
       propertyPath: m_SortingOrder

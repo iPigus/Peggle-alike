@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    [SerializeField] int points = 100;
     [SerializeField] bool isStrong = false;
     public static List<Box> AllPegs = new();
 
@@ -22,6 +23,11 @@ public class Box : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Ball")) return;
 
+        Hit(); 
+    }
+
+    public void Hit()
+    {
         if (isStrong)
         {
             if (transform.childCount != 0) transform.GetChild(0).gameObject.SetActive(true);
@@ -33,14 +39,16 @@ public class Box : MonoBehaviour
         DestroyPeg();
     }
 
+    bool isDestroying = false;
     async void DestroyPeg()
     {
         spriteRenderer.color = new(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 100f/255f);
 
-        await Task.Delay(3000);
+        await Task.Delay(3000); 
+        if (this == null || isDestroying) return; isDestroying = true;
 
-        GameManager.AddPoints(100);
-        GameManager.SpawnPointText(100, transform.position);
+        GameManager.AddPoints(points);
+        GameManager.SpawnPointText(points, transform.position);
 
         this.gameObject.SetActive(false);
     }
